@@ -13,6 +13,7 @@
  *
  * @author BiNI
  */
+//evoting local github test comment
 class Connect {
     //put your code here
     protected $connection;   
