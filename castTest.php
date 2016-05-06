@@ -3,6 +3,9 @@
 
     ini_set("display_errors", "1");
     error_reporting(E_ALL);
+    if(isset($_SESSION['login']) !== true){
+        header("Location: login.php");
+    }  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>Evoting Cast</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
