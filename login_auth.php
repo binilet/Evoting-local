@@ -42,17 +42,17 @@ class login_auth {
              $this->password = $result['PASSWORD'];
              $this->authenticate($entered_user_name,$entered_password,$this->user_name,$this->password);
          }else{
-             /*header("Location: login.php");
+             header("Location: login.php");
              echo "<script type='text/javascript'>"
-                    . "document.getElementById('error').innerHTML = 'envalid username or password';</script>";  */
-             echo "nothing returned";
+                    . "document.getElementById('error').innerHTML = 'envalid username or password';</script>"; 
+             //echo "nothing returned";
          }
         
         if(isset($_POST['login']) && $_SESSION['login'] !== true){
-                    /*header("Location: login.php");
+                    header("Location: login.php");
                     echo "<script type='text/javascript'>"
-                    . "document.getElementById('error').innerHTML = 'envalid username or password';</script>";    */
-             echo "error";
+                    . "document.getElementById('error').innerHTML = 'envalid username or password';</script>";  
+             //echo "error";
         }
     }
     public function authenticate($username,$password,$dbuname,$dbpaswd){

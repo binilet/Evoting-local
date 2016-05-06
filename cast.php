@@ -41,7 +41,7 @@
       <div class="col-md-3"><p class="label label-primary">Constituency Code</p></div>
      
       <div class="col-md-3">
-        <button class="label label-primary">Logout</button>
+          <button class="label label-primary">Logout</button>
       </div>
 	
       <div class="col-md-3">
