@@ -36,11 +36,11 @@ class login_auth {
         
          $query = "select * from admins where USER_NAME = '$entered_user_name' AND PASSWORD = '$entered_password'";
          $askDB = mysqli_query($this->connection, $query) or die("Invalid Query: 38 " . mysqli_error($this->connection));
-         if(mysqli_affected_rows($this->connection) == 1){
-             $result = mysqli_fetch_row($askDB);
-             $this->user_name = $result[2];
-             $this->password = $result[3];
-             $this->authenticate($entered_user_name,$entered_password);
+         if(mysqli_affected_rows($this->connection) >= 1){
+             $result = mysqli_fetch_assoc($askDB);    
+             $this->user_name = $result['USER_NAME'];
+             $this->password = $result['PASSWORD'];
+             $this->authenticate($entered_user_name,$entered_password,$this->user_name,$this->password);
          }else{
              /*header("Location: login.php");
              echo "<script type='text/javascript'>"
@@ -55,17 +55,18 @@ class login_auth {
              echo "error";
         }
     }
-    public function authenticate($username,$password){
+    public function authenticate($username,$password,$dbuname,$dbpaswd){
         if(isset($_POST['login'])){
             //session_start();
-            if($username === $this->user_name && $password === $this->password){
+            if($username === $dbuname && $password === $dbpaswd){
                 $_SESSION['login'] = true;
                 $_SESSION['uname'] = $this->user_name;
                 $_SESSION['password'] = $this->password;
                 header("Location: castTest.php");
             }else{
-               // header("Location: login.php"); 
-                echo "error";
+               // header("Location: login.php");
+                
+                echo "error AUTH";
             }
             
         }
