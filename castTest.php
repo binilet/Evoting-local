@@ -1,5 +1,5 @@
 <?php
-    include 'Connect.php';
+    include 'castPopulator.php';
 
     ini_set("display_errors", "1");
     error_reporting(E_ALL);
@@ -46,12 +46,16 @@
   <body>
    <div class="row text-center">
       <div class="col-md-3">
-        <p class="label label-primary">Constituency Code</p>
+        <p class="label label-primary">PollStation Code<span class="label label-danger" id="psCode">::</span></p>
       </div>
-      <div class="col-md-3"><p class="label label-primary">Constituency Code</p></div>
+      <div class="col-md-3">
+          <p class="label label-primary">Constituency Code<span class="label label-danger" id="conCode">::</span></p>
+      </div>
      
       <div class="col-md-3">
-        <button class="label label-primary">Logout</button>
+          <form action="logout.php" method="post">
+              <button name="logout" class="label label-primary">Logout</button>
+          </form>
       </div>
 	
       <div class="col-md-3">
@@ -62,27 +66,8 @@
 
     <div class="row top-buffer text-center">
         <?php
-            $p = new Connect();
-            $connection = $p->connect();
-            $sql = "SELECT * FROM evoting_party";
-            $result = mysqli_query($connection, $sql) or die("envlalid query " . mysqli_error($connection));
-            $rowsReturned = mysqli_affected_rows($connection);
-            //echo "<h1 style='color:red;'>" . $rowsReturned . " rows returned</h1>";
-            while ($party = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
-                $pname = $party['PARTY_NAME'];
-                $pcode = $party['PARTY_CODE'];
-                $lname = $party['LOGO_NAME'];
-                $lpath = $party['LOGO_PATH'];
-                echo "<div class='col-md-4' data-toggle='modal' data-target='#confirm'>";
-                echo "<img class='img-rounded' src='../Evoting-admin/upload/$lpath' width='95%' height='100%'>";
-                echo "<p class='label label-danger'>";
-                echo "Party Name: <span class='label label-info'>$pname</span><br>";
-                echo "Candidate Name: <span class='label label-info'>$pcode</span><br>";
-                echo "Logo Name: <span class='label label-info'>$lname</span><br>";
-                echo "</p>";
-                echo "</div>";
-                
-            }
+            $populate = new castPopulator();
+            $populate->populate_ui();
         ?>
      <hr>
     </div>
