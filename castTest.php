@@ -67,9 +67,9 @@
     <div class="row top-buffer text-center">
         <?php
             $populate = new castPopulator();
-            $populate->populate_ui();
+            $populate->populate_ui(); 
         ?>
-     <hr>
+    
     </div>
       <div id="confirm" class="modal fade" role="dialog">
           <div class="modal-dialog">
@@ -81,8 +81,10 @@
                       <h1>Are You Sure?</h1>
                   </div>
                   <div class="modal-footer">
-                      <button class="btn btn-info btn-lg">Yes</button>
-                      <button class="btn btn-danger btn-lg" data-dismiss="modal">No</button>
+                      <form action="castController.php" method="post">
+                          <button class="btn btn-info btn-lg" name="castYes" id="yesId">Yes</button>
+                          <button class="btn btn-danger btn-lg" data-dismiss="modal">No</button>
+                      </form>
                       
                   </div>
               </div>

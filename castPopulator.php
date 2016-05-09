@@ -38,18 +38,16 @@ class castPopulator {
                 $pname = $party['party_name'];
                 $psCode = $party['ps_code'];
                 $conCode = $party['const_code'];
-                
-                
+                              
                 echo "<div class='col-md-4' data-toggle='modal' data-target='#confirm'>";
-                echo "<img class='img-rounded' src='../Evoting-admin/upload/$lpath' width='95%' height='100%'>";
+                echo "<img class='img-rounded' src='../Evoting-admin/upload/$lpath' width='95%' height='95%'>";
                 echo "<p class='label label-danger'>";
                 echo "Party Name: <span class='label label-info'>$pname</span><br>";
                 echo "ConstCode: <span class='label label-info'>$conCode</span><br>";
                 echo "Logo Name: <span class='label label-info'>$lname</span><br>";
                 echo "</p>";
                 echo "</div>";
-                
-                
+                                
                 echo "<script type='text/javascript'>"
             . "document.getElementById('conCode').innerHTML = ': $conCode';"
                         . "document.getElementById('psCode').innerHTML = ': $psCode';</script>";
