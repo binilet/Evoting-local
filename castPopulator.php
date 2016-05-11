@@ -25,7 +25,7 @@ class castPopulator {
     
     public function populate_ui(){
             $pscode = $_SESSION['pscode'];
-            $sql = "select distinct evoting_party.logo_path,evoting_party.logo_name,evoting_party.party_name,const_ps.const_code,vote_ps.ps_code
+            $sql = "select distinct evoting_party.id,evoting_party.logo_path,evoting_party.logo_name,evoting_party.party_name,const_ps.const_code,vote_ps.ps_code
                     from evoting_party ,const_ps, admins, vote_ps
                     where admins.ps_code = '$pscode' AND vote_ps.ps_code = '$pscode' AND const_ps.ps_code = '$pscode' 
                     AND evoting_party.party_name IN (select pname from vote_ps where ps_code = '$pscode');";
@@ -33,6 +33,7 @@ class castPopulator {
             $result = mysqli_query($this->connection, $sql) or die("envlalid query " . mysqli_error($this->connection));
             $this->rowsReturned = mysqli_affected_rows($this->connection);
             while ($party = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+                $pid = $party['id'];
                 $lpath = $party['logo_path'];
                 $lname = $party['logo_name'];
                 $pname = $party['party_name'];
@@ -40,6 +41,7 @@ class castPopulator {
                 $conCode = $party['const_code'];
                               
                 echo "<div class='col-md-4' data-toggle='modal' data-target='#confirm'>";
+                echo "<input type='hidden' value='$pid'/>";
                 echo "<img class='img-rounded' src='../Evoting-admin/upload/$lpath' width='95%' height='95%'>";
                 echo "<p class='label label-danger'>";
                 echo "Party Name: <span class='label label-info'>$pname</span><br>";
