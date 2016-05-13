@@ -83,11 +83,12 @@
                   </div>
                   <div class="modal-footer">
                          <form action="castController.php" method="post">
-                         <button class="btn btn-info btn-lg" name="submit">Yes</button>
+                         
                          <input type="hidden" id="castPid" name="castPid" value="" />
                          <input type="hidden" id="pname" name="pname" value="" />
                          <input type="hidden" id="concode" name="concode" value=""/>
                          <input type="hidden" id="pscode" name="pscode" value=""/>
+                         <button class="btn btn-info btn-lg" name="submit">Yes</button>
                          <button class="btn btn-danger btn-lg" data-dismiss="modal">No</button>
                          </form>
                       
