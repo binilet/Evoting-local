@@ -16,12 +16,23 @@ error_reporting(E_ALL);
 class castController {
     //put your code here
     protected $connection;
+    protected $id;
+    protected $pname;
+    protected $concode;
+    protected $pscode;
     public function __construct() {
         $p = new Connect();
         $this->connection = $p->connect();
     }
     public function printHello(){
-        echo "<h1>mfgr</h1>";
+        $this->id = filter_input(INPUT_POST, 'castPid');
+        $this->pname = filter_input(INPUT_POST, 'pname');
+        $this->concode = filter_input(INPUT_POST,'concode');
+        $this->pscode = filter_input(INPUT_POST,'pscode');
+        echo "<h1>party id ---> $this->id</h1>";
+        echo "<h1>party name --> $this->pname</h1>";
+        echo "<h1>con code --> $this->concode</h1>";
+        echo "<h1>ps code --> $this->pscode</h1>";
     }
 }
 $t = new castController();

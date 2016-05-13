@@ -40,8 +40,10 @@ class castPopulator {
                 $psCode = $party['ps_code'];
                 $conCode = $party['const_code'];
                               
-                echo "<div class='col-md-4' data-toggle='modal' data-target='#confirm'>";
-                echo "<input type='hidden' value='$pid'/>";
+                echo "<div class='open-confirmDialog col-md-4' data-toggle='modal' data-id='$pid' data-pname='$pname' data-concode='$conCode'"
+                        . " data-ps='$psCode' data-target='#confirm'>";
+                        
+                //echo "<input type='hidden' value='$pid'/>";
                 echo "<img class='img-rounded' src='../Evoting-admin/upload/$lpath' width='95%' height='95%'>";
                 echo "<p class='label label-danger'>";
                 echo "Party Name: <span class='label label-info'>$pname</span><br>";
@@ -53,6 +55,7 @@ class castPopulator {
                 echo "<script type='text/javascript'>"
             . "document.getElementById('conCode').innerHTML = ': $conCode';"
                         . "document.getElementById('psCode').innerHTML = ': $psCode';</script>";
+                
                 
             }
     }

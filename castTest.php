@@ -79,12 +79,17 @@
                   </div>
                   <div class="modal-body">
                       <h1>Are You Sure?</h1>
+                      
                   </div>
                   <div class="modal-footer">
-                      <form action="castController.php" method="post">
-                          <button class="btn btn-info btn-lg" name="castYes" id="yesId">Yes</button>
-                          <button class="btn btn-danger btn-lg" data-dismiss="modal">No</button>
-                      </form>
+                         <form action="castController.php" method="post">
+                         <button class="btn btn-info btn-lg" name="submit">Yes</button>
+                         <input type="hidden" id="castPid" name="castPid" value="" />
+                         <input type="hidden" id="pname" name="pname" value="" />
+                         <input type="hidden" id="concode" name="concode" value=""/>
+                         <input type="hidden" id="pscode" name="pscode" value=""/>
+                         <button class="btn btn-danger btn-lg" data-dismiss="modal">No</button>
+                         </form>
                       
                   </div>
               </div>
@@ -92,8 +97,10 @@
       </div>
         
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/evoting-local.js"></script>
+
   </body>
 </html>
