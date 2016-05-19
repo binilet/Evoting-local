@@ -34,18 +34,20 @@ class castController {
         }
     }
     public function processCast(){
-        $query = "Select party_name from cast_result WHERE party_name = '$this->pname'";
+        $query = "Select party_name from cast_result WHERE party_name = '$this->pname' and ps_code = '$this->pscode'";
         $result = mysqli_query($this->connection, $query) or die("Error processing query: ".  mysqli_error($this->connection));
         if(mysqli_affected_rows($this->connection) < 1){
             //echo "<h3> Currently there are no current results for $this->pname party </h3>";
             $this->insertFirstResult();
+            header('Location: http://localhost/evoting-local/casttest.php');
         }else{
             $this->updateCastResult();
-            echo "surprisingly there is a record";
+            header('Location: http://localhost/evoting-local/casttest.php');
+            
         }
     }
     public function insertFirstResult(){
-        $query = "INSERT INTO cast_result(id,party_name,const_code,ps_code,vote_count) VALUES(1,'$this->pname','$this->concode','$this->pscode',"
+        $query = "INSERT INTO cast_result(id,party_name,const_code,ps_code,vote_count) VALUES(0,'$this->pname','$this->concode','$this->pscode',"
                 . "1)";
         $result = mysqli_query($this->connection, $query) or die("Error: ". mysqli_error($this->connection));
         if(mysqli_affected_rows($this->connection)){
@@ -57,19 +59,12 @@ class castController {
     public function updateCastResult(){
         $query = "UPDATE cast_result "
                 . "SET vote_count = vote_count + 1"
-                . " WHERE party_name = '$this->pname'";
+                . " WHERE party_name = '$this->pname' AND ps_code = '$this->pscode'";
         $result = mysqli_query($this->connection, $query) or die ("Error in Query: ". mysqli_error($this->connection));
         if(mysqli_affected_rows($this->connection) >= 1){
             echo "Vote Incremented";
         }
     }
-    public function printHello(){
-        echo "<h1>party id ---> $this->id</h1>";
-        echo "<h1>party name --> $this->pname</h1>";
-        echo "<h1>con code --> $this->concode</h1>";
-        echo "<h1>ps code --> $this->pscode</h1>";
-        $this->processCast();
-    }
 }
 $t = new castController();
-$t->printHellO();
+$t->processCast();

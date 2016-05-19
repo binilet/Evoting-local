@@ -23,10 +23,6 @@
         <p><input type="password" name="password" value="" placeholder="Password" required="true"></p>
         <span style="color:red;" id="error"></span>
         <p class="submit"><input type="submit" name="login" value="Login"></p>
-        <?php
-            
-            
-        ?>
       </form>
     </div>
 

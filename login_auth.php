@@ -33,9 +33,9 @@ class login_auth {
         $entered_user_name = filter_input(INPUT_POST, 'user_name');
         $entered_password = filter_input(INPUT_POST, 'password');
 
-        $query = "select * from admins where USER_NAME = '$entered_user_name' AND PASSWORD = '$entered_password'";
+        $query = "select * from admins where USER_NAME = '$entered_user_name'";// AND PASSWORD = '$hashed_password'";
         $askDB = mysqli_query($this->connection, $query) or die("Invalid Query: 38 " . mysqli_error($this->connection));
-        if (mysqli_affected_rows($this->connection) >= 1) {
+        if (mysqli_affected_rows($this->connection) == 1) {
             $result = mysqli_fetch_assoc($askDB);
             $this->pscode = $result['PS_CODE'];
             $this->user_name = $result['USER_NAME'];
@@ -59,12 +59,14 @@ class login_auth {
     public function authenticate($username, $password, $dbuname, $dbpaswd) {
         if (isset($_POST['login'])) {
             //session_start();
-            if ($username === $dbuname && $password === $dbpaswd) {
-                $_SESSION['login'] = true;
-                $_SESSION['uname'] = $this->user_name;
-                $_SESSION['password'] = $this->password;
-                $_SESSION['pscode'] = $this->pscode;
-                header("Location: castTest.php");
+            if ($username === $dbuname) {
+                if(password_verify($password, $dbpaswd)){
+                    $_SESSION['login'] = true;
+                    $_SESSION['uname'] = $this->user_name;
+                    $_SESSION['password'] = $this->password;
+                    $_SESSION['pscode'] = $this->pscode;
+                    header("Location: castTest.php");
+                }
             } else {
                 // header("Location: login.php");
 
