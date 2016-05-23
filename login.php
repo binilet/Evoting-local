@@ -2,6 +2,16 @@
     session_start();
 ?>
 
+<?php
+/*
+$db = mysqli_connect("localhost", "root", "") or die("Error connect!");
+mysqli_select_db($db,"lang_db") or die("Error Select db!"); 
+mysqli_query("SET NAMES 'UTF8'");
+*/
+include('language/define_lang.php');
+?>
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -16,13 +26,15 @@
 </head>
 <body>
   <section class="container">
+      
     <div class="login">
-      <h1>Login to eVoting DashBoard</h1>
+        <a href="language/switch_lang.php?lang=1">Amharic</a> | <a href="language/switch_lang.php?lang=2">English</a><hr/>
+      <h1><?php echo _t_header;?></h1>
       <form method="post" action="login_auth.php">
-        <p><input type="text" name="user_name" value="" placeholder="Username" required = "true"></p>
-        <p><input type="password" name="password" value="" placeholder="Password" required="true"></p>
+        <p><input type="text" name="user_name" value="" placeholder="<?php echo _t_username;?>" required = "true"></p>
+        <p><input type="password" name="password" value="" placeholder="<?php echo _t_password;?>" required="true"></p>
         <span style="color:red;" id="error"></span>
-        <p class="submit"><input type="submit" name="login" value="Login"></p>
+        <p class="submit"><input type="submit" name="login" value="<?php echo _t_login;?>"></p>
       </form>
     </div>
 

@@ -1,6 +1,9 @@
 <?php
     include 'castPopulator.php';
     include 'psResult.php';
+    
+    include('language/define_lang.php');
+    
     ini_set("display_errors", "1");
     error_reporting(E_ALL);
     session_start();
@@ -48,20 +51,24 @@
    <audio id="audio" src="audio/rose.mp3"></audio>     
    <div class="row text-center">
       <div class="col-md-3">
-        <p class="label label-primary">PollStation Code<span class="label label-danger" id="psCode">::</span></p>
+        <p class="label label-primary"><?php echo _t_pscode;?><span class="label label-danger" id="psCode">::</span></p>
       </div>
       <div class="col-md-3">
-          <p class="label label-primary">Constituency Code<span class="label label-danger" id="conCode">::</span></p>
+          <p class="label label-primary"><?php echo _t_constcode;?><span class="label label-danger" id="conCode">::</span></p>
       </div>
      
       <div class="col-md-3">
           <form action="logout.php" method="post">
-              <button name="logout" class="label label-primary">Logout</button>
+              <button name="logout" class="label label-primary"><?php echo _t_logout;?></button>
           </form>
       </div>
 	
       <div class="col-md-3">
-        <button class="label label-primary" data-toggle="modal" data-target="#result">Result</button>
+        <button class="label label-primary" data-toggle="modal" data-target="#result"><?php echo _t_result;?></button>
+      </div>
+       
+       <div class="col-md-3">
+        <a href="language/switch_lang.php?lang=1">Amharic</a> | <a href="language/switch_lang.php?lang=2">English</a><hr/>
       </div>
 
    </div>
@@ -77,10 +84,10 @@
           <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header">
-                      <h3>Maregagecha</h3>
+                      <h3><?php echo _t_confirmation;?></h3>
                   </div>
                   <div class="modal-body">
-                      <h1>Are You Sure?</h1>
+                      <h1><?php echo _t_areushure;?></h1>
                       
                   </div>
                   <div class="modal-footer">
@@ -90,8 +97,8 @@
                          <input type="hidden" id="pname" name="pname" value="" />
                          <input type="hidden" id="concode" name="concode" value=""/>
                          <input type="hidden" id="pscode" name="pscode" value=""/>
-                         <button class="btn btn-info btn-lg" name="submit">Yes</button>
-                         <button class="btn btn-danger btn-lg" data-dismiss="modal">No</button>
+                         <button class="btn btn-info btn-lg" name="submit"><?php echo _t_yes;?></button>
+                         <button class="btn btn-danger btn-lg" data-dismiss="modal"><?php echo _t_no;?></button>
                          </form>
                       
                   </div>
@@ -102,7 +109,7 @@
        <div class="modal-dialog">
            <div class="modal-content">
                <div class="modal-header">
-                   <h4>Results</h4>
+                   <h4><?php echo _t_results;?></h4>
                </div>
                <div class="modal-body" >
                    <!-- pull result from db and display in a datatable-->
@@ -110,10 +117,10 @@
                        <table class="table table-striped table-bordered table-hover" id="dataTable-result">
                            <thead>
                                <tr>
-                                   <th>Party Name</th>
-                                   <th>Constituency Code</th>
-                                   <th>PollStation Code</th>
-                                   <th>Result</th>
+                                   <th><?php echo _t_partyname;?></th>
+                                   <th><?php echo _t_constcode;?></th>
+                                   <th><?php echo _t_pscode;?></th>
+                                   <th><?php echo _t_result;?></th>
                                </tr>
                            </thead>
                            <tbody>
@@ -126,8 +133,8 @@
                    </div>
                </div>
                <div class="modal-footer">
-                   <button class="btn btn-info btn-lg" name="submit" id="Print">Print</button>
-                   <button class="btn btn-danger btn-lg" data-dismiss="modal">Dismiss</button>
+                   <button class="btn btn-info btn-lg" name="submit" id="Print"><?php echo _t_print;?></button>
+                   <button class="btn btn-danger btn-lg" data-dismiss="modal"><?php echo _t_dismiss;?></button>
                </div>
            </div>
        </div>
